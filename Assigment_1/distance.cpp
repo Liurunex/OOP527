@@ -34,8 +34,8 @@ int main(int argc, char** argv) {
 		pair<int, double> inputRes = dataConvert(input);
 		
 		if (!inputRes.first ||
-			(!read_index%2 && (inputRes.second > 90 || inputRes.second < -90)) ||
-			(read_index%2 && (inputRes.second > 180 || inputRes.second < -180))) { 
+			((read_index%2 == 0) && (inputRes.second > 90 || inputRes.second < -90)) ||
+			((read_index%2 != 0) && (inputRes.second > 180 || inputRes.second < -180))) { 
 			error_print();
 			return 0; 
 		}
