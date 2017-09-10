@@ -1,0 +1,14 @@
+ESTIMATE of time to complete assignment: 2 hours
+      Time     Time
+Date  Started  Spent Work completed
+----  -------  ----  --------------
+8/31  08:00pm  1:00  read assignment and write the basic version;
+9/02  09:00pm  0:30  change the string split function from isstringstream to stod by
+					 manually move pointers to split the input string
+9/09  11:00am  1:30  adding the unvalid input handler fucntion; 
+					 finished debugging; program passes all public tests
+               ----
+               3:00  TOTAL time spent
+
+I discussed my solution with: Hao Song
+

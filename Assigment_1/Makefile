@@ -1,12 +1,11 @@
 CXX = g++
-CXXFLAGS = -g -std=c++11
+CXXFLAGS = -Wall -pedantic -std=c++11
 
-%.o: %.cpp
-	$(CXX) -c $(CXXFLAGS) $<
+Distance: distance.o
+	${CXX} ${CXXFLAGS} -o Distance distance.o
 
-DISTANCE = distance.o
-test: $(DISTANCE)
-	$(CXX) -o $@ $(DISTANCE)
+distance.o: distance.cpp
+	${CXX} ${CXXFLAGS} -c distance.cpp
 
 clean:
-	$(RM) *.o test
+	$(RM) Distance *.o
