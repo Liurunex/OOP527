@@ -2,17 +2,25 @@ ESTIMATE of time to complete assignment: 2 hours
       Time     Time
 Date  Started  Spent Work completed
 ----  -------  ----  --------------
-8/31  08:00pm  1:00  read assignment and write the basic version;
-9/02  09:00pm  0:30  change the string split function from isstringstream to
-stod by manually move pointers to split the input string
-9/09  11:00am  1:30  adding the unvalid input handler fucntion; 
-					 finished debugging; program passes all public tests
+8/31  08:00pm  1:00  read assignment and write the basic version
+9/02  09:00pm  0:30  worked on the string split function based on isstringstream 
+					 and the converting string to double fucntion stod; add some
+					 wrong input handlers
+9/09  11:00am  1:30  completed the invalid input handlers part; 
+9/10  03:30pm  1:30	 finished debugging; program passes all public tests
                ----
-               3:00  TOTAL time spent
+               4:30  TOTAL time spent
 
-I discussed my solution with: Hao Song
+I discussed my solution with: No one
 
-checking the input was difficult since the unvalid input contains mang cases
-which is not easy to implement the handler. In order to deal with it, I changed
-my string split function from isstringstream to stod, as the stod function will
-throw exceptions than can be cathched andy
+The idea of this assignment is to use getline and isstringstream to split the input,
+then convert those splited string tokens into double and combine them into the 
+corresponding double value by using stod function, finally we did the formula caculations
+to get the answer. 
+Checking the invalid input was difficult since some cases were not easy to implement 
+the handler. Using the stod function helped on solving this issue, as the stod 
+fucntion will throw exception that can be catched and it provided the pointer to 
+the next position in string after converting the string into double, which is 
+greatly helpful on detecting invalid input like the string mixed both character
+and digit. Another problem was the empty input line case, I finally found the function
+called find_first_not_of() of string to solve this issue. 
