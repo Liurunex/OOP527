@@ -3,8 +3,8 @@ ESTIMATE of time to complete assignment: 2 hours
 Date  Started  Spent Work completed
 ----  -------  ----  --------------
 8/31  08:00pm  1:00  read assignment and write the basic version;
-9/02  09:00pm  0:30  change the string split function from isstringstream to stod by
-					 manually move pointers to split the input string
+9/02  09:00pm  0:30  change the string split function from isstringstream to
+stod by manually move pointers to split the input string
 9/09  11:00am  1:30  adding the unvalid input handler fucntion; 
 					 finished debugging; program passes all public tests
                ----
@@ -12,3 +12,7 @@ Date  Started  Spent Work completed
 
 I discussed my solution with: Hao Song
 
+checking the input was difficult since the unvalid input contains mang cases
+which is not easy to implement the handler. In order to deal with it, I changed
+my string split function from isstringstream to stod, as the stod function will
+throw exceptions than can be cathched andy
