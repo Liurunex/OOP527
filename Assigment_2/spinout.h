@@ -3,10 +3,8 @@
 
 #include <string>
 
-namespace HW
-{
-    class SpinOut
-    {
+namespace HW {
+    class SpinOut {
     public:
         SpinOut();
         SpinOut(const std::string& s);
@@ -21,7 +19,7 @@ namespace HW
         
     private:
         static const int SIZE = 7;
-        static int user_move = 0;
+        int user_move = 0;
         char board[7];
     };
 }

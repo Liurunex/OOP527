@@ -1,19 +1,31 @@
-#include <string>
+#include <string.h>
+#include <stdio.h>
+#include <iostream>
 #include "spinout.h"
 
 namespace HW
 {
-	SpinOut::SpinOut()
-	{}
-	SpinOut::SpinOut(const std::string& s) 
-	{}
-	SpinOut::~SpinOut() 
-	{}
+	SpinOut::SpinOut() {
+		memset(board,'-',sizeof(board));
+	}
 
-	void SpinOut::boardPrint() const {
+	SpinOut::SpinOut(const std::string& s) {
+		if (!s.length()) {
+			 memset(board,'-',sizeof(board));
+		}
+		else {
+			for (size_t i = 0; i < s.length(); ++ i)
+				this->board[i] = s.at(i);
+		}
+	}
+
+	SpinOut::~SpinOut() {}
+
+	void 
+	SpinOut::boardPrint() const {
 		for (int i = 0; i < SIZE; ++ i)
-			cout << board[i];
-		cout << "\n";
+			std::cout << board[i];
+		std::cout << "\n";
 	}
 	
 	bool 
@@ -23,7 +35,7 @@ namespace HW
 
 		if (i+1 < SIZE && board[i+1] == '/')
 			for (int j = i+2; j < SIZE; ++j)
-				if (board[j] != '-'){
+				if (board[j] != '-')
 					return false;
 
 		return true;
@@ -37,7 +49,7 @@ namespace HW
 			boardPrint();
 		}
 		else
-			cout << "Woops: illegal move." << endl;
+			std::cout << "Woops: illegal move." << std::endl;
 	}
 
 	int 
@@ -54,13 +66,31 @@ namespace HW
 	}
 
 	std::string 
-	SpinOut::toString() const {}
+	SpinOut::toString() const {
+		return "";
+	}
     
 }
 
 int main (int argc, char** argv) {
-	SpinOut* gameObejct = new SpinOut();
-	gameObejct->boardPrint();
+	HW::SpinOut* gameObejct;
+	//int mode = 0;
+	if (argc >= 2 && !strcmp(argv[1], "-i")) {
+		if (argc == 2)
+			gameObejct = new HW::SpinOut();
+		else {
+			std::string board(argv[2]);
+			if (board.length() != 7 || 
+				board.find_first_not_of("-/") != std::string::npos) {
+				std::cout << "Error: invaild board input\n";
+				return 1;
+			}
+			gameObejct = new HW::SpinOut(board);
+		}
+	}
+
+	//SpinOut* gameObejct = new SpinOut();
+	//gameObejct->boardPrint();
 	
     return 0;
 }
