@@ -5,13 +5,13 @@
 
 namespace HW
 {
-	SpinOut::SpinOut() {
-		memset(board,'-',sizeof(board));
+	SpinOut::SpinOut(): user_move(0) {
+		memset(board, '/', sizeof(board));
 	}
 
-	SpinOut::SpinOut(const std::string& s) {
+	SpinOut::SpinOut(const std::string& s): user_move(0) {
 		if (!s.length()) {
-			 memset(board,'-',sizeof(board));
+			 memset(board, '/', sizeof(board));
 		}
 		else {
 			for (size_t i = 0; i < s.length(); ++ i)
@@ -33,10 +33,13 @@ namespace HW
 		if (i >= SIZE || i < 0) return false;
 		if (i+1 == SIZE) return true;
 
-		if (i+1 < SIZE && board[i+1] == '/')
-			for (int j = i+2; j < SIZE; ++j)
-				if (board[j] != '-')
+		if (i+1 < SIZE && board[i+1] == '/') {
+			for (int j = i+2; j < SIZE; ++j){
+				if (board[j] != '-'){
 					return false;
+				}
+			}
+		}
 
 		return true;
 	}
@@ -46,7 +49,6 @@ namespace HW
 		if (isLegalMove(i)) {
 			board[i] = board[i] == '-' ? '/':'-';
 			user_move ++;
-			boardPrint();
 		}
 		else
 			std::cout << "Woops: illegal move." << std::endl;
@@ -74,21 +76,33 @@ namespace HW
 
 int main (int argc, char** argv) {
 	HW::SpinOut* gameObejct;
-	//int mode = 0;
+	int mode = 0;
 	if (argc >= 2 && !strcmp(argv[1], "-i")) {
+		if (argc > 3) std::cout << "Error: excessed input will be ignored\n";
 		if (argc == 2)
 			gameObejct = new HW::SpinOut();
 		else {
 			std::string board(argv[2]);
-			if (board.length() != 7 || 
+			if (board.length() != BOARD_SIZE || 
 				board.find_first_not_of("-/") != std::string::npos) {
 				std::cout << "Error: invaild board input\n";
 				return 1;
 			}
 			gameObejct = new HW::SpinOut(board);
 		}
+		mode = 1;
 	}
 
+	if (mode) {
+		do {
+			gameObejct->boardPrint();
+			int index = -1;
+			if (std::cin >> index)
+				gameObejct->makeMove(index);
+			
+		} while (!gameObejct->isSolved());
+ 	}
+ 	else {}
 	//SpinOut* gameObejct = new SpinOut();
 	//gameObejct->boardPrint();
 	

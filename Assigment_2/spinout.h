@@ -2,6 +2,8 @@
 #define __SPINOUT_H__
 
 #include <string>
+#define BOARD_SIZE 7
+    
 
 namespace HW {
     class SpinOut {
@@ -18,9 +20,9 @@ namespace HW {
         std::string toString() const;
         
     private:
-        static const int SIZE = 7;
-        int user_move = 0;
-        char board[7];
+        static const int SIZE = BOARD_SIZE;
+        int user_move;
+        char board[BOARD_SIZE];
     };
 }
     
