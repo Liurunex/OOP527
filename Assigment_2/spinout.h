@@ -2,6 +2,7 @@
 #define __SPINOUT_H__
 
 #include <string>
+#include <vector>
 #define BOARD_SIZE 7
     
 
@@ -18,10 +19,13 @@ namespace HW {
         bool isSolved() const;
         void boardPrint() const;
         std::string toString() const;
-        
+
+        void interactove_mode();
+        void non_interactove_mode(int& start_position,
+            int& argc, char** argv);
     private:
         static const int SIZE = BOARD_SIZE;
-        int user_move;
+        std::vector<int> moves;
         char board[BOARD_SIZE];
     };
 }
