@@ -12,6 +12,10 @@ namespace HW {
         SpinOut(const std::string& s);
         ~SpinOut();
 
+        void interactove_mode();
+        void non_interactove_mode(int& start_position,
+            int& argc, char** argv);
+    private:
         bool isLegalMove(int i) const;
         void makeMove(int i);
         int totalMoves() const;
@@ -19,10 +23,6 @@ namespace HW {
         void boardPrint() const;
         std::string toString() const;
 
-        void interactove_mode();
-        void non_interactove_mode(int& start_position,
-            int& argc, char** argv);
-    private:
         static const int SIZE = BOARD_SIZE;
         std::vector<int> moves;
         char board[BOARD_SIZE];
