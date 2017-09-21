@@ -5,16 +5,46 @@
 #include <vector>
 #define BOARD_SIZE 7
 
-namespace HW {
+namespace cs427_527 {
     class SpinOut {
     public:
+        /* the default constructor 
+         * no parameters;
+         * fucntion description:
+         *
+         */
         SpinOut();
+        
+        /* the override constructor with board setting: 
+         * parameters description:
+         *
+         * fucntion/return description:
+         * 
+         */
         SpinOut(const std::string& s);
+        
+        /* the default destructor 
+         * no parameters;
+         * fucntion description:
+         *
+         */
         ~SpinOut();
 
-        void interactove_mode();
-        void non_interactove_mode(int& start_position,
+        /* interactive mode 
+         * parameters description:
+         * fucntion/return description:
+         * 
+         */
+        void interactive_mode();
+        
+        /* non-interactive mode 
+         * parameters description:
+         * fucntion/return description:
+         * 
+         */
+        void non_interactive_mode(int& start_position,
             int& argc, char** argv);
+    
     private:
         bool isLegalMove(int i) const;
         void makeMove(int i);
