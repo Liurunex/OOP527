@@ -91,7 +91,7 @@ SpinOut::interactive_mode() {
 				this->boardPrint();
 			}
 			else {
-				cout << "whoops: you gived it up :)\n";
+				//cout << "whoops: you gived it up :)\n";
 				return;
 			}	
 		}
