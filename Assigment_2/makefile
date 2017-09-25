@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -Wall -pedantic -std=c++11
 
 SpinOut: spinout.o main.o
-	${CXX} ${CXXFLAGS} -o Spinout spinout.o main.o
+	${CXX} ${CXXFLAGS} -o SpinOut spinout.o main.o
 
 spinout.o: spinout.cpp
 	${CXX} ${CXXFLAGS} -c spinout.cpp
