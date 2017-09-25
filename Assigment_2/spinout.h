@@ -3,6 +3,10 @@
 
 #include <string>
 #include <vector>
+#include <cstring>
+#include <cstdio>
+#include <cstdlib> 
+#include <iostream>
 #define BOARD_SIZE 7
 
 namespace cs427_527 {
@@ -44,16 +48,18 @@ namespace cs427_527 {
          */
         void non_interactive_mode(int& start_position,
             int& argc, char** argv);
-    
-    private:
+        
         bool isLegalMove(int i) const;
         void makeMove(int i);
-        int totalMoves() const;
-        bool isSolved() const;
+        int  totalMoves() const; 
+        bool isSolved() const; 
+        std::string toString() const;   
+        static const int SIZE = BOARD_SIZE;    
+    
+    private:    
         void boardPrint() const;
-        std::string toString() const;
 
-        static const int SIZE = BOARD_SIZE;
+        bool solved = false;
         std::vector<int> moves;
         char board[BOARD_SIZE];
     };
