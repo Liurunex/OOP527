@@ -11,4 +11,4 @@ main.o: main.cpp
 	${CXX} ${CXXFLAGS} -c main.cpp
 
 clean:
-	$(RM) Spinout *.o
+	$(RM) SpinOut *.o
