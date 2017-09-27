@@ -4,8 +4,6 @@
 #include <string>
 #include <vector>
 
-#define BOARD_SIZE 7
-
 namespace cs427_527 {
     class SpinOut {
     public:
@@ -17,7 +15,7 @@ namespace cs427_527 {
         
         /* the override constructor with board setting: 
          * parameters: a 7-character string only consisted of '/' and '-';
-         * fucntion: initial the board based on user input, if the user input was
+         * fucntion: initial the board based on user input, once detecting the user input was
          * invalid, then initial the board with default setting
          */
         SpinOut(const std::string& s);
@@ -39,9 +37,12 @@ namespace cs427_527 {
         void interactive_mode();
         
         /* non-interactive mode 
-         * parameter
-         * fucntion: 
-         * 
+         * parameter: a integer called start_position records the start index of rotate 
+         * operation; a integer argc records the arguments number, and a char** argv 
+         * stores all the input arguments.
+         * fucntion: it starts from the start_postion to do the rotate operation, determine 
+         * whether current rotate position was valid; if so do the normal rotate operation, 
+         * otherwise terminate the running game.
          */
         void non_interactive_mode(int& start_position,
             int& argc, char** argv);

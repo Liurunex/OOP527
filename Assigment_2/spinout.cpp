@@ -21,8 +21,6 @@ SpinOut::SpinOut(const string& s) {
 	if (s.length() != SIZE || 
 		s.find_first_not_of("-/") != string::npos) {
 		memset(board, '/', sizeof(board));
-		cout << "Error: invaild board input, change to default setting\n";
-		//throw  "Error: invaild board input, change to default setting";
 	}
 	else {
 		for (size_t i = 0; i < s.length(); ++ i)
@@ -57,7 +55,7 @@ SpinOut::makeMove(int i) {
 		board[i] = board[i] == '-' ? '/':'-';
 		this->moves.push_back(i);
 	}
-	else throw "inlegal moves";
+	else throw "illegal move";
 }
 
 int 
@@ -65,7 +63,7 @@ SpinOut::totalMoves() const {
 	return moves.size();
 }
 
-bool 
+bool
 SpinOut::isSolved() const {
 	for (int i = 0; i < SIZE; ++ i)
 		if (board[i] == '/')
@@ -83,7 +81,7 @@ void
 SpinOut::interactive_mode() {
 	this->boardPrint();
 	if (this->isSolved()) {
-		cout << "SOLVED\n" << this->totalMoves() << " moves\n";
+		cout << this->totalMoves() << " moves\n";
 		return;
 	}
 	do {
@@ -104,7 +102,7 @@ SpinOut::interactive_mode() {
 			}	
 		}
 		catch (const char* msg) {
-			cout << "illegal move" << endl;
+			cout << msg << endl;
 		}
 	} while ((!this->isSolved()) || (this->solved = true));
 }
@@ -113,6 +111,10 @@ void
 SpinOut::non_interactive_mode(int& start_position, int& argc,
 	char** argv) {
 	int index = start_position;
+	if (this->isSolved()) {
+		cout << " SOLVED\n";
+		return;
+	}
 	do {
 		if (this->solved) {
 			cout << "SOLVED\n";
@@ -133,7 +135,7 @@ SpinOut::non_interactive_mode(int& start_position, int& argc,
 			index ++;
 		}
 		else {
-			cout << "Error: invalid move input\n";
+			//cout << "Error: invalid move input\n";
 			return;
 		}
 	} while ((!this->isSolved()) || (this->solved = true));
