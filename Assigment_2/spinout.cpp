@@ -1,4 +1,9 @@
 #include "spinout.h"
+#include <string>
+#include <cstring>
+#include <iostream>
+#include <cstdio>
+#include <cstdlib> 
 
 using cs427_527::SpinOut;
 using std::strcmp;
@@ -13,8 +18,11 @@ SpinOut::SpinOut() {
 }
 
 SpinOut::SpinOut(const string& s) {
-	if (!s.length()) {
-		 memset(board, '/', sizeof(board));
+	if (s.length() != SIZE || 
+		s.find_first_not_of("-/") != string::npos) {
+		memset(board, '/', sizeof(board));
+		cout << "Error: invaild board input, change to default setting\n";
+		//throw  "Error: invaild board input, change to default setting";
 	}
 	else {
 		for (size_t i = 0; i < s.length(); ++ i)

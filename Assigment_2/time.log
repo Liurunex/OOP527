@@ -1,0 +1,20 @@
+ESTIMATE of time to complete assignment: 4 hours
+      Time     Time
+Date  Started  Spent Work completed
+----  -------  ----  --------------
+9/12  08:00pm  2:00  read assignment and start the basic version.
+9/13  10:00am  0:30  completed the basic version based on draft introduction;
+					 passed basic test cases.
+9/19  09:00pm  2:00  revised some public fucntion into private for safety concern;
+					 initial the public function comments.
+9/25  09:00pm  1:30  revise both non-interactive and interactive mode by using try catach 
+					 statements, so that improved the time complecity.
+9/27  02:00pm  1:00  completed the public fucntion comments part, passed the eight online
+			         test cases;
+9/27  06:0pm   2:00  
+               ----
+               7:30  TOTAL time spent
+
+I discussed my solution with: No one
+
+
