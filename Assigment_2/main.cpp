@@ -28,7 +28,14 @@ int main (int argc, char** argv) {
 		}
 		else {
 			string board(argv[1]);
-			if (board.length() == 1 && isdigit(board[0])) {
+			bool isNumber = true;
+			for (char bchar:board) {
+				if (!isdigit(bchar)) {
+					isNumber = false;
+					break;
+				}
+			}
+			if (isNumber) {
 				start_position = 1;
 				gameObejct = new SpinOut();
 			}

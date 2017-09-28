@@ -122,7 +122,15 @@ SpinOut::non_interactive_mode(int& start_position, int& argc,
 		}
 		if (index >= argc) break;
 		string candiate_move(argv[index]);
-		if (candiate_move.length() == 1 && isdigit(candiate_move[0])) {
+		bool isNumber = true;
+		for (char bchar:candiate_move) {
+			if (!isdigit(bchar)) {
+				isNumber = false;
+				break;
+			}
+		}
+
+		if (isNumber) {
 			int rotate_pos = stoi(candiate_move); 
 			try { 
 				makeMove(rotate_pos); 
