@@ -43,12 +43,14 @@ Conway::Conway(istream& instream) {
 			vector<int> parameters;
 			int varsize = 0;
 			while (iss >> varsize){
-				if (varsize <= 0)
+				if (varsize <= 0) {
 					throw "illegal input";
+				}
 				parameters.push_back(varsize);
 			}
-			if (parameters.size() != 2)
+			if (parameters.size() != 2) {
 				throw "illegal input";
+			}
 
 			colSize = parameters[0];
 			rowSize = parameters[1];
@@ -56,19 +58,19 @@ Conway::Conway(istream& instream) {
 			board = new char*[rowSize];
 			for (int i = 0; i < rowSize; ++ i)
 				board[i] = new char[colSize];
-
 			linecounter ++;
 			continue;
 		}
-		if (linecounter >= rowSize || lines.length() != (size_t)colSize || 
+		if (linecounter > rowSize || lines.length() != (size_t)colSize || 
 			lines.find_first_not_of("X.") != string::npos)
 			throw "illegal input";
 		
 		strcpy(board[linecounter-1], lines.c_str());
 		linecounter ++;
 	}
-	if (linecounter != rowSize)
+	if (linecounter != rowSize+1) {
 		throw "illegal input";
+	}
 }
 
 /* copy constructor */
