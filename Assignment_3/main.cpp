@@ -1,25 +1,26 @@
-#include "spinout.h"
+#include "conway.h"
 #include <string>
 #include <cstring>
 
-using cs427_527::SpinOut;
+using cs427_527::Conway;
 using std::strcmp;
 using std::string;
 
 int main (int argc, char** argv) {
-	SpinOut* gameObejct;
+	Conway* gameObejct;
 	/* handle interactive mdoe */
 	if (argc >= 2 && !strcmp(argv[1], "-i")) {
 		if (argc == 2)
-			gameObejct = new SpinOut();
-		else {
-			string board(argv[2]);
-			gameObejct = new SpinOut(board);
+			gameObejct = new Conway();
+		else if (!strcmp(argv[2], "-f")) {
+			//string board(argv[2]);
+			//gameObejct = new SpinOut(board);
+			std::cout << "whoops\n";
 		}
 		gameObejct->interactive_mode();
 	}
 
-	/* hadnle non-interactive mode*/
+	/* hadnle non-interactive mode*
 	else {
 		int start_position = -1; 
 		if (argc < 2) {
@@ -45,7 +46,7 @@ int main (int argc, char** argv) {
 			}
 		}
 		gameObejct->non_interactive_mode(start_position, argc, argv);
-	}
+	}*/
 	
     return 1;
 }

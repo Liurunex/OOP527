@@ -3,25 +3,26 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 namespace cs427_527 {
 	class Conway {
 	public:
 		Conway();
 
-		Conway(istream&);
+		Conway(std::istream& instream);
 
 		/* copy constructor */
-		Conway(const Conway&);
+		Conway(const Conway& a);
 		
 		/* move constructor */
-		Conway(Conway&&);
+		Conway(Conway&& a);
 
 		/* assignment operator */
-		Conway& operator=(const Conway&);
+		Conway& operator=(const Conway& a);
 
 		/* move assignment operator */
-		Conway& operator=(Conway&&);
+		Conway& operator=(Conway&& a);
 
 		~Conway();
 
@@ -38,19 +39,19 @@ namespace cs427_527 {
 
 		bool isSolved() const;
 
-		std::string toString();
+		std::string toString() const;
 
-		std::pair<int, int> boardSize();
+		std::pair<int, int> boardSize() const;
 
 	private:    
-		int rowSize;
-		int colSize;
-		bool solved;
-		std::vector<int> moves;
+		int rowSize = 5;
+		int colSize = 6;
+		bool solved = false;
+		int moves = 0;
 		char** board;
 	};
 
-	std::ostream& operator<<(ostream& out, const Conway& a);
+	std::ostream& operator<<(std::ostream& out, const Conway& a);
 }
 
 #endif
