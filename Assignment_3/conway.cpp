@@ -253,7 +253,6 @@ Conway::non_interactive_mode(int& start, int& argc, char** argv) {
 			makeMove(parameters[0], parameters[1], parameters[2], parameters[3]);
 		}
 		catch (const char* msg) {
-			cout << msg << endl;
 			cout << "Conway: illegal move " << parameters[0] << " " << parameters[1] <<
 			" " << parameters[2] << " " << parameters[3] << " in position " << count << " for\n";
 			cout << *this << endl;
