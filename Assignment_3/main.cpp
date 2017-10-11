@@ -64,5 +64,5 @@ int main (int argc, char** argv) {
 		gameObejct->non_interactive_mode(start_position, argc, argv);
 	}
 	
-    return 1;
+    return 0;
 }

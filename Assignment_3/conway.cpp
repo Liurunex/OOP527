@@ -19,7 +19,7 @@ using std::istream;
 using std::istringstream;
 using std::vector;
 
-Conway::Conway() : rowSize(5), colSize(6), solved(false), moves(0) {
+Conway::Conway(): rowSize(5), colSize(6), solved(false), moves(0) {
 	board = new char*[rowSize];
 	for (int i = 0; i < rowSize; ++ i)
 		board[i] = new char[colSize];
@@ -34,7 +34,7 @@ Conway::Conway() : rowSize(5), colSize(6), solved(false), moves(0) {
 	board[rowSize/2+1][3] = 'X';
 }
 
-Conway::Conway(istream& instream) {
+Conway::Conway(istream& instream): solved(false), moves(0) {
 	string lines;
 	int linecounter = 0;
 	while (getline(instream, lines)) {
@@ -75,9 +75,11 @@ Conway::Conway(istream& instream) {
 
 /* copy constructor */
 Conway::Conway(const Conway& a) {
-	rowSize = a.boardSize().first;
-	colSize = a.boardSize().second;
-	board  = new char*[rowSize];
+	rowSize = a.rowSize;
+	colSize = a.colSize;
+	solved  = a.solved;
+	moves   = a.moves;
+	board   = new char*[rowSize];
 	for (int i = 0; i < rowSize; ++ i) {
 		board[i] = new char[colSize];
 		strcpy(board[i], a.board[i]);
@@ -86,10 +88,16 @@ Conway::Conway(const Conway& a) {
 
 /* move constructor */
 Conway::Conway(Conway&& a) {
-	rowSize = a.boardSize().first;
-	colSize = a.boardSize().second;
-	board = a.board;
-	a.board = nullptr;
+	rowSize   = a.rowSize;
+	colSize   = a.colSize;
+	solved    = a.solved;
+	moves     = a.moves;
+	board     = a.board;
+	a.board   = nullptr;
+	a.rowSize = 0;
+	a.colSize = 0;
+	a.solved  = false;
+	a.moves   = 0;
 }
 
 /* assignment operator */
@@ -102,8 +110,10 @@ Conway::operator=(const Conway& a) {
 		delete board[i];
 	delete[] board;
 
-	rowSize = a.boardSize().first;
-	colSize = a.boardSize().second;
+	rowSize = a.rowSize;
+	colSize = a.colSize;
+	solved  = a.solved;
+	moves   = a.moves;
 
 	board  = new char*[rowSize];
 	for (int i = 0; i < rowSize; ++ i) {
@@ -124,11 +134,18 @@ Conway::operator=(Conway&& a) {
 		delete board[i];
 	delete[] board;
 
-	rowSize = a.boardSize().first;
-	colSize = a.boardSize().second;
+	rowSize = a.rowSize;
+	colSize = a.colSize;
+	solved  = a.solved;
+	moves   = a.moves;
 
 	board = a.board;
 	a.board = nullptr;
+
+	a.rowSize = 0;
+	a.colSize = 0;
+	a.solved  = false;
+	a.moves   = 0;
 
 	return *this;
 }

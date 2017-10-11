@@ -47,7 +47,7 @@ namespace cs427_527 {
 		int rowSize = 5;
 		int colSize = 6;
 		bool solved = false;
-		int moves = 0;
+		int moves   = 0;
 		char** board;
 	};
 
