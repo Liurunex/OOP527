@@ -79,6 +79,7 @@ Conway::Conway(const Conway& a) {
 	colSize = a.colSize;
 	solved  = a.solved;
 	moves   = a.moves;
+
 	board   = new char*[rowSize];
 	for (int i = 0; i < rowSize; ++ i) {
 		board[i] = new char[colSize];
@@ -93,6 +94,7 @@ Conway::Conway(Conway&& a) {
 	solved    = a.solved;
 	moves     = a.moves;
 	board     = a.board;
+
 	a.board   = nullptr;
 	a.rowSize = 0;
 	a.colSize = 0;
@@ -115,7 +117,7 @@ Conway::operator=(const Conway& a) {
 	solved  = a.solved;
 	moves   = a.moves;
 
-	board  = new char*[rowSize];
+	board   = new char*[rowSize];
 	for (int i = 0; i < rowSize; ++ i) {
 		board[i] = new char[colSize];
 		strcpy(board[i], a.board[i]);
@@ -138,10 +140,9 @@ Conway::operator=(Conway&& a) {
 	colSize = a.colSize;
 	solved  = a.solved;
 	moves   = a.moves;
-
-	board = a.board;
-	a.board = nullptr;
-
+	board   = a.board;
+	
+	a.board   = nullptr;
 	a.rowSize = 0;
 	a.colSize = 0;
 	a.solved  = false;
@@ -219,7 +220,7 @@ Conway::interactive_mode() {
 					parameters[3]);
 				cout << *this << endl;
 			}
-      else return;
+      		else return;
 		}
 		catch (const char* msg) {
 			cout << msg << endl;
@@ -270,13 +271,7 @@ Conway::toString() const{
 			output += board[i][j];
 		if (i != rowSize-1) output += '\n';
 	}
-	
 	return output;
-}
-
-pair<int, int> 
-Conway::boardSize() const{
-	return {rowSize, colSize};
 }
 
 namespace cs427_527 {
