@@ -210,7 +210,40 @@ Conway::interactive_mode() {
 }
 
 void 
-Conway::non_interactive_mode(int& start_position, int& argc, char** argv) {}
+Conway::non_interactive_mode(int& start, int& argc, char** argv) {
+	int index = start, count = 0;
+	vector<int> parameters;
+	while ((!isSolved()) || (this->solved = true)){
+		if (this->solved) {
+			cout << "SOLVED\n";
+			return;
+		}
+		parameters.clear();
+		for (int i = 0; i < 4; ++ i) {
+			if (index >= argc) break;
+			string candiate(argv[index++]);
+			istringstream iss(candiate);
+			int varsize;
+			iss >> varsize;
+			parameters.push_back(varsize);
+		}
+		if (parameters.size() != 4) {
+			cout << *this << endl;
+			return;
+		}
+		try {
+			count ++;
+			makeMove(parameters[0], parameters[1], parameters[2], parameters[3]);
+		}
+		catch (const char* msg) {
+			cout << msg << endl;
+			cout << "Conway: illegal move " << parameters[0] << " " << parameters[1] <<
+			" " << parameters[2] << " " << parameters[3] << " in position " << count << " for\n";
+			cout << *this << endl;
+			return;
+		}
+	}
+}
 
 string 
 Conway::toString() const{

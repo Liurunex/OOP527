@@ -28,7 +28,7 @@ int main (int argc, char** argv) {
 				else return 1;
 			}
 			catch (const char* msg) {
-				std::cout << msg << std::endl;
+				//std::cout << msg << std::endl;
 				return 1;
 			}
 		}
@@ -36,33 +36,33 @@ int main (int argc, char** argv) {
 		gameObejct->interactive_mode();
 	}
 
-	/* hadnle non-interactive mode*
+	/* hadnle non-interactive mode*/
 	else {
 		int start_position = -1; 
-		if (argc < 2) {
+		if (argc < 2 || strcmp(argv[1], "-f")) {
 			start_position = 1;
-			gameObejct = new SpinOut();
+			gameObejct = new Conway();
 		}
-		else {
-			string board(argv[1]);
-			bool isNumber = true;
-			for (char bchar:board) {
-				if (!isdigit(bchar)) {
-					isNumber = false;
-					break;
+		else if (argc >= 3 && !strcmp(argv[1], "-f")){
+			string inputfile(argv[2]);
+			start_position = 3;
+			try {
+				filebuf fb;
+				if (fb.open(inputfile, std::ios::in)) {
+					istream binfo(&fb);
+					gameObejct = new Conway(binfo);
+					fb.close();
 				}
+				else return 1;
 			}
-			if (isNumber) {
-				start_position = 1;
-				gameObejct = new SpinOut();
-			}
-			else {
-				start_position = 2;
-				gameObejct = new SpinOut(board);
+			catch (const char* msg) {
+				//std::cout << msg << std::endl;
+				return 1;
 			}
 		}
+		else return 1;
 		gameObejct->non_interactive_mode(start_position, argc, argv);
-	}*/
+	}
 	
     return 1;
 }
