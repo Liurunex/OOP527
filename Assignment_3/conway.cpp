@@ -219,6 +219,7 @@ Conway::interactive_mode() {
 					parameters[3]);
 				cout << *this << endl;
 			}
+      else return;
 		}
 		catch (const char* msg) {
 			cout << msg << endl;
