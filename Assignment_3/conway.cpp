@@ -1,4 +1,4 @@
-#include "Conway.h"
+#include "conway.h"
 #include <iostream>
 #include <sstream>
 #include <string>
