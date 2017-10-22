@@ -61,21 +61,19 @@ public:
    */
   std::vector<double> getVector(const T& keyword) const;
   
-  void worker(std::istream& is);
+  void worker(std::istream& is, std::vector<T> keywords);
 
-  std::string toString(std::vector<std::vector<double>>& res) const;
+  void printhelper(std::vector<double>& res, const T& keyword) const;
 
 private:
   int size;
-  int sent_count;
   std::vector<std::vector<double>> cooccurMatrix;
-  std::unordered_map<T, int> wordMap;
+  std::unordered_map<T, size_t> wordMap;
 };
 
 /* 527: uncomment this line so your template implementation is
  * included whenever someone includes this header
  */
 #include "cooccur.cpp"
-
 
 #endif
