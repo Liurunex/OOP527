@@ -59,7 +59,7 @@ vector<double> CooccurrenceMatrix<T>::getVector(const T& keyword) const {
 	//int index = wordMap[keyword];
 	int index = wordMap.find(keyword)->second;
 	res = cooccurMatrix[index];
-	int temsize = cooccurMatrix[index][index];
+	int temsize = cooccurMatrix[index][index] == 0 ? 1:cooccurMatrix[index][index];
 	for_each(res.begin(), res.end(), [&temsize](double& value) {
 		value /= temsize;
 	});
