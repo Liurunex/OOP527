@@ -30,7 +30,7 @@ template<typename T>
 unordered_set<T> CooccurrenceMatrix<T>::readContext(istream& is) const {
 	unordered_set<T> readed;
 	string line;
-	if (!getline (is, line)) 
+	if (!getline (is, line))
 		throw "completed reading action";
 	istringstream iss(line);
 	T element;
@@ -78,7 +78,7 @@ void CooccurrenceMatrix<T>::worker(istream& is, vector<T> keywords) {
 		}	
 	}
 	catch (const char* msg) {
-		cout << msg << endl;
+		//cout << msg << endl;
 	}
 
 	for (size_t i = 0; i < keywords.size(); ++ i) {
