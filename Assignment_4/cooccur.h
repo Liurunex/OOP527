@@ -33,6 +33,9 @@ public:
    *
    * @param is an input stream
    * @return an set of strings containing all the keywords read
+   * NOTICE: the readContext function would throw an exception with the string “completed 
+   * reading action” to denote that the reading is done. In this case, please notice to catch 
+   * this exception if new main function was built for test.
    */
   std::unordered_set<T> readContext(std::istream& is) const;
 
@@ -61,8 +64,19 @@ public:
    */
   std::vector<double> getVector(const T& keyword) const;
   
+  /* Given a input stream and vector storing keywords, the fucntion completed
+   * the read action, count all keywords in each lines of the input stream,
+   * and finally print the requreid matrix out.
+   * @param a input stream, a vector storing all keywords
+   * @return void
+   */
+   
   void worker(std::istream& is, std::vector<T> keywords);
-
+ 
+  /* the fucntion convert a specific row with a keyword from matrix to string for print.
+   * @param a row vector of the matrix, the corresponding keyword.
+   * @return void
+   */
   void printhelper(std::vector<double>& res, const T& keyword) const;
 
 private:
