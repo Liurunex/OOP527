@@ -212,7 +212,8 @@ Conway::toString() const{
 	for (int i = 0; i < rowSize; ++ i){
 		for (int j = 0; j < colSize; ++ j)
 			output += board[i][j];
-		if (i != rowSize-1) output += '\n';
+		//if (i != rowSize-1) 
+		output += '\n';
 	}
 	return output;
 }
