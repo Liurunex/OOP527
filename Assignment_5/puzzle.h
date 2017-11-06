@@ -4,15 +4,12 @@
 #include <string>
 #include <iostream>
 #include "puzzle_move.h"
-using cs427_527::PuzzleMove;
 
 namespace cs427_527 {
 	class Puzzle {
 	public:
 
-		Puzzle();
-
-		virtual ~Puzzle();
+		virtual ~Puzzle() {}
 
 		virtual PuzzleMove* readMove(std::istream& movesIn) = 0;
 
@@ -26,11 +23,10 @@ namespace cs427_527 {
 
 		virtual std::string toString() const = 0;
 
+		friend std::ostream& operator<<(std::ostream& out, const Puzzle& a) {
+			return out << a.toString();
+		}
 	};
-
-	std::ostream& operator<<(std::ostream& out, const Puzzle& a) {
-		return out << a.toString();
-	}
 }
 
 #endif

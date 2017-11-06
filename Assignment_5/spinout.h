@@ -5,9 +5,6 @@
 #include <vector>
 #include <iostream>
 #include "puzzle.h"
-#include "puzzle_move.h"
-
-using cs427_527::PuzzleMove;
 
 namespace cs427_527 {
     class SpinOut : public Puzzle {
@@ -39,8 +36,6 @@ namespace cs427_527 {
         std::vector<int> moves;
         char board[SIZE];
     };
-
-    std::ostream& operator<<(std::ostream& out, const SpinOut& a);
 }
     
 #endif

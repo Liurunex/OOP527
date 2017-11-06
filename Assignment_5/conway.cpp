@@ -226,13 +226,10 @@ Conway::readMove(std::istream& movesIn) {
 	for (int i = 0; i < 4; ++ i){
 		if (movesIn >> pos)
 			move->addItem(pos);
-		else throw "illegal move stream";
+		else {
+			delete move;
+			return nullptr;
+		}
 	}
 	return move;
-}
-
-namespace cs427_527 {
-	ostream& operator<<(ostream& out, const Conway& a) {
-		return out << a.toString();
-	}
 }

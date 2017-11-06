@@ -7,28 +7,23 @@
 #include <fstream> 
 #include "puzzle_factory.h"
 #include "conway.h"
-#include "puzzle.h"
-
-using cs427_527::Puzzle;
 
 namespace cs427_527 {
 	class ConwayFactory : public PuzzleFactory {
 	public:
-
-		ConwayFactory() {}
 		
 		~ConwayFactory() {};
 
-		Puzzle* puzzleFromString (std::string& init) {
+		Conway* puzzleFromString (std::string& init) {
 			throw "illegal construction";
 		}
 		
-		Puzzle* puzzleFromStream (std::ifstream& in) {
-			return new cs427_527::Conway(in);
+		Conway* puzzleFromStream (std::ifstream& in) {
+			return new Conway(in);
 		}
 		
-		Puzzle* defaultPuzzle () {
-			return new cs427_527::Conway();
+		Conway* defaultPuzzle () {
+			return new Conway();
 		}
 	};
 

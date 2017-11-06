@@ -5,9 +5,6 @@
 #include <vector>
 #include <iostream>
 #include "puzzle.h"
-#include "puzzle_move.h"
-
-using cs427_527::PuzzleMove;
 
 namespace cs427_527 {
 	class Conway : public Puzzle {
@@ -46,8 +43,6 @@ namespace cs427_527 {
 		int moves   = 0;
 		char** board;
 	};
-
-	std::ostream& operator<<(std::ostream& out, const Conway& a);
 }
 
 #endif

@@ -12,13 +12,11 @@ namespace cs427_527 {
 	class PuzzleMove {
 	public:
 
-		PuzzleMove();
+		PuzzleMove() {}
 
-		~PuzzleMove();
+		~PuzzleMove() {}
 
 		void addItem(int& i) { elements.push_back(i); }
-		
-		int size() const { return (int)elements.size(); }
 
 		int access(int index) const { 
 			return index < (int)elements.size() ? elements[index]:0; }
@@ -35,14 +33,15 @@ namespace cs427_527 {
 			return s;
 		}
 
+		friend std::ostream& operator<<(std::ostream& out, const PuzzleMove& a) {
+			return out << a.toString();
+		}
 	private:
 		std::vector<int> elements;
 		std::string type;
 	};
+	
 
-	std::ostream& operator<<(std::ostream& out, const PuzzleMove& a) {
-		return out << a.toString();
-	}
 }
 
 #endif

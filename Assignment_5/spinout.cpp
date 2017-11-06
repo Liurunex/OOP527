@@ -87,16 +87,12 @@ SpinOut::readMove(std::istream& movesIn) {
 	PuzzleMove* move = new PuzzleMove();
 	move->setType("spinout");
 	int pos;
-	for (int i = 0; i < 1; ++ i){
-		if (movesIn >> pos)
-			move->addItem(pos);
-		else throw "illegal move stream";
+	if (movesIn >> pos)
+		move->addItem(pos);
+	else {
+		delete move;
+		return nullptr;
 	}
-	return move;
-}
 
-namespace cs427_527 {
-	ostream& operator<<(ostream& out, const SpinOut& a) {
-		return out << a.toString();
-	}
+	return move;
 }
