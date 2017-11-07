@@ -16,6 +16,7 @@ using std::cout;
 using std::cin;
 
 SpinOut::SpinOut() {
+	//board = "///////";
 	memset(board, '/', sizeof(board));
 }
 
@@ -23,6 +24,7 @@ SpinOut::SpinOut(const string& s) {
 	if (s.length() != SIZE || 
 		s.find_first_not_of("-/") != string::npos) {
 		memset(board, '/', sizeof(board));
+		//board = "///////";
 	}
 	else {
 		for (size_t i = 0; i < s.length(); ++ i)
@@ -78,7 +80,10 @@ SpinOut::totalMoves() const {
 
 string 
 SpinOut::toString() const {
-	string return_res(board);
+	//string return_res(board);
+	string return_res;
+	for (char it:board)
+		return_res += it;
 	return return_res;
 }
 

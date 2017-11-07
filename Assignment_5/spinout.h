@@ -34,6 +34,7 @@ namespace cs427_527 {
         void boardPrint() const;
         bool solved = false;
         std::vector<int> moves;
+        //std::string board;
         char board[SIZE];
     };
 }

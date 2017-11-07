@@ -38,7 +38,7 @@ Conway::Conway(): rowSize(5), colSize(6), solved(false), moves(0) {
 Conway::Conway(istream& instream): solved(false), moves(0) {
 	string lines;
 	int linecounter = 0;
-	while (getline(instream, lines)) {
+	while (getline(instream, lines) && lines.length() > 0) {
 		if (!linecounter) {
 			istringstream iss(lines);
 			vector<int> parameters;
@@ -66,7 +66,10 @@ Conway::Conway(istream& instream): solved(false), moves(0) {
 			lines.find_first_not_of("X.") != string::npos)
 			throw "illegal input";
 		
-		strcpy(board[linecounter-1], lines.c_str());
+		//strcpy(board[linecounter-1], lines.c_str());
+		for (size_t i = 0; i < (size_t)colSize; ++i)
+			board[linecounter-1][i] = lines.at(i);
+		
 		linecounter ++;
 	}
 	if (linecounter != rowSize+1) {
@@ -110,7 +113,7 @@ Conway::operator=(const Conway& a) {
 		return *this;
 
 	for (int i = 0; i < rowSize; ++ i)
-		delete board[i];
+		delete[] board[i];
 	delete[] board;
 
 	rowSize = a.rowSize;
@@ -134,7 +137,7 @@ Conway::operator=(Conway&& a) {
 		return *this;
 	
 	for (int i = 0; i < rowSize; ++ i)
-		delete board[i];
+		delete[] board[i];
 	delete[] board;
 
 	rowSize = a.rowSize;
@@ -154,7 +157,7 @@ Conway::operator=(Conway&& a) {
 
 Conway::~Conway() {
 	for (int i = 0; i < rowSize; ++ i)
-		delete board[i];
+		delete[] board[i];
 	delete[] board;
 }
 
@@ -195,7 +198,7 @@ Conway::makeMove(PuzzleMove* move) {
 
 bool
 Conway::isSolved() const {
-	for (int i = 0; i <= colSize; ++ i)
+	for (int i = 0; i < colSize; ++ i)
 		if (board[0][i] == 'X')
 			return true;
 	return false;
