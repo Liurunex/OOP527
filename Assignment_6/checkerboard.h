@@ -5,12 +5,13 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include "board.h"
 
 namespace cs427_527
 {
-  class Checker;
+  class Piece;
 
-  class CheckerBoard
+  class CheckerBoard : public Board
   {
   public:
     enum Color { BLACK, RED };
@@ -32,7 +33,7 @@ namespace cs427_527
      * @param row a row on this board
      * @param col a column on this board
      */
-    std::shared_ptr<Checker> getPiece(int row, int col);
+    std::shared_ptr<Piece> getPiece(int row, int col);
 
     /**
      * Returns the piece at the given position on this board, or
@@ -41,7 +42,7 @@ namespace cs427_527
      * @param row a row on this board
      * @param col a column on this board
      */
-    std::shared_ptr<const Checker> getPiece(int row, int col) const;
+    std::shared_ptr<const Piece> getPiece(int row, int col) const;
 
     /**
      * Removes the piece, if any, at the given position on this board.
@@ -58,21 +59,7 @@ namespace cs427_527
      * @param col a column on this board
      * @param p a checker
      */
-    void placePiece(int row, int col, std::shared_ptr<Checker> p);
-
-    /**
-     * Returns the width of this board.
-     *
-     * @return the width of this board
-     */
-    int getWidth() const;
-
-    /**
-     * Returns the height of this board.
-     *
-     * @return the height of this board
-     */
-    int getHeight() const;
+    void placePiece(int row, int col, std::shared_ptr<Piece> p);
 
     /**
      * Returns the color of this board at the given position.
@@ -81,14 +68,7 @@ namespace cs427_527
      * @param col a column on this board
      * @return the color of that position.
      */
-    Color getBoardColor(int row, int col) const;
-
-    /**
-     * Returns the index of the player whose turn it is on this board.
-     *
-     * @return the player whose turn it is
-     */
-    int getCurrentPlayer() const;
+    int getBoardColor(int row, int col) const;
 
     /**
      * Determines if it is legal to move a piece from the given
@@ -125,13 +105,6 @@ namespace cs427_527
      * @return a printable representation of this board
      */
     std::string toString() const;
-    
-    /**
-     * Determines if the given position is on this board.
-     *
-     * @return true if and only if the position is on this board
-     */
-    bool inBounds(int r, int c) const;
 
   protected:
     /**
@@ -153,44 +126,14 @@ namespace cs427_527
     int findLongestMove(int fromR, int fromC) const;
 
     /**
-     * Contains the pieces on this board.  board[r][c] is the piece
-     * at row r, column c.  A given entry is nullptr if there is no
-     * piece.
-     */
-    std::vector<std::vector<std::shared_ptr<Checker>>> board;
-
-    /**
-     * The width of this board.
-     */
-    int width;
-
-    /**
-     * The height of this board.
-     */
-    int height;
-
-    /**
-     * The index of the player whose turn it is.
-     */
-    int turn;
-
-    /**
      * A pointer to the piece that is in the middle of a sequence
      * of jumps.  This piece is the only one it is legal to move.
      * If there is no such piece, this is nullptr and it is legal
      * to move any piece that has a legal move.
      */
-    std::shared_ptr<Checker> jumping;
+    std::shared_ptr<Piece> jumping;
   };
 
-  /**
-   * Outputs a printable representation of this board to the given stream.
-   *
-   * @param os an output stream
-   * @param board a board
-   * @return the output stream
-   */
-  std::ostream& operator<<(std::ostream& os, const CheckerBoard& board);
 }
   
 #endif

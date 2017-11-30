@@ -3,15 +3,16 @@
 
 #include <string>
 #include <memory>
-
+#include "piece.h"
+#include "board.h"
 namespace cs427_527
 {
-  class CheckerBoard;
+  //class Board;
 
   /**
    * A checker.
    */
-  class Checker
+  class Checker : public Piece
   {
   public:
     /**
@@ -38,7 +39,7 @@ namespace cs427_527
      * @param toR a row on that board
      * @param toC a column on that board
      */
-    bool isLegalMove(const CheckerBoard& board, int toR, int toC) const;
+    bool isLegalMove(const Board& board, int toR, int toC) const;
 
     /**
      * Moves this checker to the given position on the given board,
@@ -49,14 +50,7 @@ namespace cs427_527
      * @param toR a row on that board
      * @param toC a column on that board
      */
-    void makeMove(CheckerBoard& board, int toR, int toC);
-
-    /**
-     * Returns the index of the player this checker belongs to.
-     *
-     * @return the index of the owner
-     */
-    int getPlayer() const;
+    void makeMove(Board& board, int toR, int toC);
 
     /**
      * Returns a printable representation of this checker.
@@ -77,7 +71,7 @@ namespace cs427_527
      * @return true if and only if the move is legal, considering only
      * the contents of the destination
      */
-    virtual bool isLegalDestination(const CheckerBoard& board, int toR, int toC) const;
+    virtual bool isLegalDestination(const Board& board, int toR, int toC) const;
 
     /**
      * Determines if it is legal to move this checker to the given
@@ -100,7 +94,6 @@ namespace cs427_527
      */
     virtual bool isLegalDistance(int dist) const;
 
-
     /**
      * Determines if it is legal to move this checker to the given location,
      * considering only the contents of the space in between.
@@ -113,7 +106,7 @@ namespace cs427_527
      * @return true if and only if the move is legal, considering only
      * the contents of the space between
      */
-    virtual bool isLegalJump(const CheckerBoard& board, int toR, int toC) const;
+    virtual bool isLegalJump(const Board& board, int toR, int toC) const;
 
     /**
      * Returns whether this checker can move backwards.
@@ -132,7 +125,7 @@ namespace cs427_527
      * @param toC the column of a position on that board diagonally two
      * away from this checker's location
      */
-    virtual void jump(CheckerBoard& board, int toR, int toC) const;
+    virtual void jump(Board& board, int toR, int toC) const;
 
     /**
      * Determines if this checker is promoted if moving to the given
@@ -143,7 +136,7 @@ namespace cs427_527
      * @param toC a column on that board
      * @return true if this checker is promoted
      */
-    virtual bool checkPromote(const CheckerBoard& board, int toR, int toC) const;
+    virtual bool checkPromote(const Board& board, int toR, int toC) const;
 
     /**
      * Returns the checker this checker is promoted to.  The new checker
@@ -151,22 +144,7 @@ namespace cs427_527
      *
      * @return the checker this checker is promoted to
      */
-    virtual std::shared_ptr<Checker> promote() const;
-
-    /**
-     * The index of the player this checker belongs to.
-     */
-    int player;
-
-    /**
-     * The row of the position of this checker.
-     */
-    int row;
-
-    /**
-     * The column of the position of this checker.
-     */
-    int col;
+    virtual std::shared_ptr<Piece> promote() const;
   };
 }
 

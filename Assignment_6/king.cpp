@@ -21,7 +21,7 @@ namespace cs427_527
     return true;
   }
 
-  bool King::checkPromote(const CheckerBoard& board, int toR, int toC) const
+  bool King::checkPromote(const Board& board, int toR, int toC) const
   {
     // kings are never promoted
     return false;

@@ -8,10 +8,7 @@
 
 namespace cs427_527
 {
-  Checker::Checker(int p, int r, int c)
-    : player(p),
-      row(r),
-      col(c)
+  Checker::Checker(int p, int r, int c) : Piece(p, r, c)
   {
   }
 
@@ -19,7 +16,7 @@ namespace cs427_527
   {
   }
 
-  bool Checker::isLegalMove(const CheckerBoard& board, int toR, int toC) const
+  bool Checker::isLegalMove(const Board& board, int toR, int toC) const
   {
     int dist = distance(row, col, toR, toC);
     return (board.inBounds(row, col) && board.inBounds(toR, toC)
@@ -29,60 +26,60 @@ namespace cs427_527
 	    && isLegalDestination(board, toR, toC));
   }
 
-  bool Checker::isLegalDestination(const CheckerBoard& board, int toR, int toC) const
+  bool Checker::isLegalDestination(const Board& board, int toR, int toC) const
   { 
     // destination must be empty
     return board.getPiece(toR, toC) == nullptr;
   }
   
-  void Checker::makeMove(CheckerBoard& board, int toR, int toC)
+  void Checker::makeMove(Board& board, int toR, int toC)
   {
     if (isLegalMove(board, toR, toC))
       {
-	// get a shared pointer to this piece (consider what happens
-	// after remove without this)
-	std::shared_ptr<Checker> self = board.getPiece(row, col);
+      	// get a shared pointer to this piece (consider what happens
+      	// after remove without this)
+      	std::shared_ptr<Piece> self = board.getPiece(row, col);
 
-	// remove this piece from original location
-	board.removePiece(row, col);
+      	// remove this piece from original location
+      	board.removePiece(row, col);
 
-	int dist = distance(row, col, toR, toC);
-	if (dist > 1)
-	  {
-	    // handle jump
-	    jump(board, toR, toC);
-	  }
+      	int dist = distance(row, col, toR, toC);
+      	if (dist > 1)
+      	  {
+      	    // handle jump
+      	    jump(board, toR, toC);
+      	  }
 
-	// update location of this piece
-	row = toR;
-	col = toC;
-	
-	// check for promotion
-	if (checkPromote(board, toR, toC))
-	  {
-	    // return a new King at the to location
-	    board.placePiece(toR, toC, promote());
-	  }
-	else
-	  {
-	    board.placePiece(toR, toC, self);
-	  }
+      	// update location of this piece
+      	row = toR;
+      	col = toC;
+      	
+      	// check for promotion
+      	if (checkPromote(board, toR, toC))
+    	  {
+    	    // return a new King at the to location
+    	    board.placePiece(toR, toC, promote());
+    	  }
+    	else
+    	  {
+    	    board.placePiece(toR, toC, self);
+    	  }
       }
   }
 
-  std::shared_ptr<Checker> Checker::promote() const
+  std::shared_ptr<Piece> Checker::promote() const
   {
     return std::make_shared<King>(player, row, col);
   }
   
-  bool Checker::checkPromote(const CheckerBoard& board, int toR, int toC) const
+  bool Checker::checkPromote(const Board& board, int toR, int toC) const
   {
     return ((player == 0 && toR == board.getHeight() - 1)
 	    || (player == 1 && toR == 0));
 
   }
   
-  void Checker::jump(CheckerBoard& board, int toR, int toC) const
+  void Checker::jump(Board& board, int toR, int toC) const
   {
     board.removePiece((row + toR) / 2, (col + toC) / 2);
   }
@@ -105,10 +102,10 @@ namespace cs427_527
 	    && iabs(row - toR) == iabs(col - toC));
   }
 
-  bool Checker::isLegalJump(const CheckerBoard& board, int toR, int toC) const
+  bool Checker::isLegalJump(const Board& board, int toR, int toC) const
   {
     // get piece in middle
-    std::shared_ptr<const Checker> jumped = board.getPiece((toR + row) / 2, (toC + col) / 2);
+    std::shared_ptr<const Checker> jumped = std::dynamic_pointer_cast<const Checker>(board.getPiece((toR + row) / 2, (toC + col) / 2));
     // jump legal if there is a piece belonging to other player
     return (jumped != nullptr && jumped->player != player);
   }

@@ -50,7 +50,7 @@ namespace cs427_527
      * @param toC a column on that board
      * @return true if this checker is promoted
      */
-    bool checkPromote(const CheckerBoard& board, int toR, int toC) const override;
+    bool checkPromote(const Board& board, int toR, int toC) const override;
 
   };
 }
