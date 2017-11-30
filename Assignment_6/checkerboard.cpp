@@ -34,46 +34,6 @@ namespace cs427_527
   {
   }
   
-  std::shared_ptr<Piece> CheckerBoard::getPiece(int r, int c)
-  {
-    if (inBounds(r, c))
-      {
-	     return board[r][c];
-      }
-    else
-      {
-	     return nullptr;
-      }
-  }
-
-  std::shared_ptr<const Piece> CheckerBoard::getPiece(int r, int c) const
-  {
-    if (inBounds(r, c))
-    {
-	   return board[r][c];
-    }
-    else
-    {
-	   return nullptr;
-    }
-  }
-
-  void CheckerBoard::removePiece(int r, int c)
-  {
-    if (inBounds(r, c))
-    {
-     board[r][c] = nullptr;
-    }
-  }
-
-  void CheckerBoard::placePiece(int r, int c, std::shared_ptr<Piece> p)
-  {
-    if (inBounds(r, c))
-    {
-      board[r][c] = p;
-    }
-  }
-  
   int CheckerBoard::getBoardColor(int r, int c) const
   {
     if (r % 2 == c % 2)

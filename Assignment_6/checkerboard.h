@@ -27,41 +27,6 @@ namespace cs427_527
     virtual ~CheckerBoard();
     
     /**
-     * Returns the piece at the given position on this board, or
-     * nullptr if there is no such piece.
-     *
-     * @param row a row on this board
-     * @param col a column on this board
-     */
-    std::shared_ptr<Piece> getPiece(int row, int col);
-
-    /**
-     * Returns the piece at the given position on this board, or
-     * nullptr if there is no such piece.
-     *
-     * @param row a row on this board
-     * @param col a column on this board
-     */
-    std::shared_ptr<const Piece> getPiece(int row, int col) const;
-
-    /**
-     * Removes the piece, if any, at the given position on this board.
-     *
-     * @param row a row on this board
-     * @param col a column on this board
-     */
-    void removePiece(int row, int col);
-
-    /**
-     * Places the given checker at the given location on this board.
-     *
-     * @param row a row on this board
-     * @param col a column on this board
-     * @param p a checker
-     */
-    void placePiece(int row, int col, std::shared_ptr<Piece> p);
-
-    /**
      * Returns the color of this board at the given position.
      *
      * @param row a row on this board

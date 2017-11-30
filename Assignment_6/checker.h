@@ -4,10 +4,9 @@
 #include <string>
 #include <memory>
 #include "piece.h"
-#include "board.h"
 namespace cs427_527
 {
-  //class Board;
+  class Board;
 
   /**
    * A checker.

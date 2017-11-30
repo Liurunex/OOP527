@@ -110,11 +110,6 @@ namespace cs427_527
     return (jumped != nullptr && jumped->player != player);
   }
 
-  int Checker::getPlayer() const
-  {
-    return player;
-  }
-
   std::string Checker::toString() const
   {
     return (player == 0 ? "bb" : "rr");

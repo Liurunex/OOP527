@@ -44,4 +44,6 @@ int main(int argc, char **argv)
     {
       std::cout << (b->getCurrentPlayer() + 1) % 2 << " wins" << std::endl;
     }
+    
+    delete b;
 }
