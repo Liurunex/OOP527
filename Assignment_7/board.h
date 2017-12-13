@@ -12,6 +12,11 @@ namespace cs427_527 {
 	class Board{
 	
 	public:
+		/*
+		 * default constructor
+		 */
+		Board() = default;
+
 		/**
 		* Creates a board with pieces in their initial locations.
 		*/

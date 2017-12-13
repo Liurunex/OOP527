@@ -1,21 +1,22 @@
-ESTIMATE of time to complete assignment: 3 hours
+ESTIMATE of time to complete assignment: 6 hours
       Time     Time
 Date  Started  Spent  Work completed
 -----  -------  ----  --------------
-11/28  02:00pm  3:00  readed assignment and start the basic version.
+12/11  02:00pm  3:00  readed assignment and start the basic version.
 					  completed the basic version;
-11/28  08:00pm  2:00  revised the base class structure, consider spliting 
-					  the implement from header filer to cpp file;
-11/29  02:00pm  2:00  Local complie error, changed to debug on zoo server.
-11/29  08:00pm  2:00  completed the final version and passed all sample test on zoo.
-11/29  10:20pm	0:30  completed the timelog and public fucntion comment.
+12/12  08:00am  2:00  added the light piece subclass;
+12/12  02:00pm  3:00  local complie succeeded, changed to debug on zoo server.
+12/13  09:00am  3:00  met html ouput not match error, working on fixing it;
+					  completed the final version and passed all sample tests on zoo.
+11/13  01:30pm	0:30  completed the timelog and public fucntion comment.
                 ----
-                9:30  TOTAL time spent
+                10:30  TOTAL time spent
 
 I discussed my solution with: No one
 
-The idea of this assignment was to refactor the game class. Here I built two base class of baord and 
-piece respectively. My idea is to build the base abstract class which is inherited by real game board and peices.
-The tricky part of this is how to deal with the base class member to be consistent with the child class memeber,
-and decide which part to be implemented in base class so that we can build another game based on the base class 
-with minial code. I made some code in the base class with implementation to acheive that purpose and it worked well.
+The idea of this assignment was to implement a new game named fission. Here I build a board class
+derived from base board, a piece class derived from base piece class, and a light piece class derived from the
+former piece class I just built. The trikcy part of this assignment is how to determine which piece should be
+removed from the board when the hit happened. I implement this hit function inside my piece subclass so that once
+a piece hit another, the hit fucntion inside the piece will be called to remove those pieces. Another challenage
+is HTML output, I fixed it by comparing with the sample output.
